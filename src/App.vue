@@ -33,7 +33,8 @@ export default {
 	data() {
 		return {
 			UserData: UserData,
-			more_count: 0
+			more_count: 0,
+			tab_step: 0
 		}
 	},
 	components: {
