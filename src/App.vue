@@ -4,13 +4,14 @@
 		<li>Cancel</li>
 		</ul>
 		<ul class="header-button-right">
-		<li>Next</li>
+		<li v-if="container_step == 1" @click="container_step = 2">Next</li>
+		<li v-if="container_step == 2" @click="publish">발행</li>
 		</ul>
 		<img src="./assets/logo.png" class="logo" />
 	</div>
 
 
-	<Container :UserData="UserData" :container_step="container_step" :upload_img="upload_img" />
+	<Container @inputWrite="inputWriteContent = $event" :UserData="UserData" :container_step="container_step" :upload_img="upload_img" />
 
 	<button @click="more">더보기</button>
 
@@ -37,6 +38,7 @@ export default {
 			more_count: 0,
 			container_step: 0,
 			upload_img: '',
+			inputWriteContent: ''
 		}
 	},
 	components: {
@@ -58,6 +60,21 @@ export default {
 				this.container_step = 1
 				this.upload_img = url
 			}
+		},
+		publish() {
+			var addContent = {
+				name: "Kim Hyun",
+				userImage: "https://placeimg.com/100/100/arch",
+				postImage: this.upload_img,
+				likes: 36,
+				date: "May 15",
+				liked: false,
+				content: this.inputWriteContent,
+				filter: "perpetua"
+			}
+
+			this.UserData.unshift(addContent)
+			this.container_step = 0
 		}
 	},
 }
