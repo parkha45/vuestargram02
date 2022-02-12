@@ -7,11 +7,9 @@
 		<div class="filter-wrap" v-if="container_step == 1">
 			<div class="upload-image" :style="`background-image: url(${upload_img})`"></div>
 			<div class="filters">
-				<div class="filter-1" :style="`background-image: url(${upload_img})`"></div>
-				<div class="filter-1" :style="`background-image: url(${upload_img})`"></div>
-				<div class="filter-1" :style="`background-image: url(${upload_img})`"></div>
-				<div class="filter-1" :style="`background-image: url(${upload_img})`"></div>
-				<div class="filter-1" :style="`background-image: url(${upload_img})`"></div>
+				<FilterBox v-for="filter in instar_filter" :key="filter" :filter="filter" :upload_img="upload_img">
+					{{filter}}
+				</FilterBox>
 			</div>
 		</div>
 
@@ -26,16 +24,21 @@
 
 <script>
 import Post from './post.vue'
+import FilterBox from './filterbox.vue'
 
 export default {
 	name: 'container',
 	data() {
 		return {
-			inputWrite: ''
+			inputWrite: '',
+			instar_filter: [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson",
+						"inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua",
+						"reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"]
 		}
 	},
 	components: {
-		Post: Post
+		Post: Post,
+		FilterBox: FilterBox
 	},
 	props: {
 		UserData: Array,
