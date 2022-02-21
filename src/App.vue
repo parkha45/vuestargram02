@@ -38,8 +38,14 @@ export default {
 			more_count: 0,
 			container_step: 0,
 			upload_img: '',
-			inputWriteContent: ''
+			inputWriteContent: '',
+			choose_filter: ''
 		}
+	},
+	mounted() {
+		this.emitter.on('changeFilter', (filter)=>{
+			this.choose_filter = filter
+		})
 	},
 	components: {
 		Container: Container
@@ -70,7 +76,7 @@ export default {
 				date: "May 15",
 				liked: false,
 				content: this.inputWriteContent,
-				filter: "perpetua"
+				filter: this.choose_filter
 			}
 
 			this.UserData.unshift(addContent)

@@ -5,7 +5,7 @@
 		</div>
 
 		<div class="filter-wrap" v-if="container_step == 1">
-			<div class="upload-image" :style="`background-image: url(${upload_img})`"></div>
+			<div :class="`upload-image ${ choose_filter }`" :style="`background-image: url(${upload_img})`"></div>
 			<div class="filters">
 				<FilterBox v-for="filter in instar_filter" :key="filter" :filter="filter" :upload_img="upload_img">
 					{{filter}}
@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="write-wrap" v-if="container_step == 2">
-			<div class="upload-image" :style="`background-image: url(${upload_img})`"></div>
+			<div :class="`upload-image ${ choose_filter }`" :style="`background-image: url(${upload_img})`"></div>
 			<div class="write">
 				<textarea @change="inputContent" class="write-box">write!</textarea>
 			</div>
@@ -33,8 +33,14 @@ export default {
 			inputWrite: '',
 			instar_filter: [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson",
 						"inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua",
-						"reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"]
+						"reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
+			choose_filter: ''
 		}
+	},
+	mounted() {
+		this.emitter.on('changeFilter', (filter)=>{
+			this.choose_filter = filter
+		})
 	},
 	components: {
 		Post: Post,
