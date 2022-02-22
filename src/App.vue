@@ -10,6 +10,8 @@
 		<img src="./assets/logo.png" class="logo" />
 	</div>
 
+	<h4>{{ $store.state.age }}</h4>
+	<button @click="$store.commit('agePlusone')">+1</button>
 
 	<Container @inputWrite="inputWriteContent = $event" :UserData="UserData" :container_step="container_step" :upload_img="upload_img" />
 
@@ -39,7 +41,8 @@ export default {
 			container_step: 0,
 			upload_img: '',
 			inputWriteContent: '',
-			choose_filter: ''
+			choose_filter: '',
+			post_id: 4
 		}
 	},
 	mounted() {
@@ -69,6 +72,7 @@ export default {
 		},
 		publish() {
 			var addContent = {
+				postId: this.post_id,
 				name: "Kim Hyun",
 				userImage: "https://placeimg.com/100/100/arch",
 				postImage: this.upload_img,
@@ -81,6 +85,7 @@ export default {
 
 			this.UserData.unshift(addContent)
 			this.container_step = 0
+			this.post_id++
 		}
 	},
 }

@@ -1,5 +1,6 @@
 export default [
 	{
+		postId: 1,
 		name: "Kim Hyun",
 		userImage: "https://placeimg.com/100/100/arch",
 		postImage: "https://placeimg.com/640/480/arch",
@@ -10,6 +11,7 @@ export default [
 		filter: "perpetua"
 	},
 	{
+		postId: 2,
 		name: "John Doe",
 		userImage: "https://placeimg.com/200/200/people",
 		postImage: "https://placeimg.com/640/480/people",
@@ -20,6 +22,7 @@ export default [
 		filter: "clarendon"
 	},
 	{
+		postId: 3,
 		name: "Minny",
 		userImage: "https://placeimg.com/100/100/animals",
 		postImage: "https://placeimg.com/640/480/animals",
