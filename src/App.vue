@@ -10,8 +10,13 @@
 		<img src="./assets/logo.png" class="logo" />
 	</div>
 
+	<p></p>
+	<p></p>
+	<p> {{ getAge }} </p>
+
+
 	<h4>{{ $store.state.age }}</h4>
-	<button @click="$store.commit('agePlusone')">+1</button>
+	<button @click="agePlusone()">+1</button>
 
 	<Container @inputWrite="inputWriteContent = $event" :UserData="UserData" :container_step="container_step" :upload_img="upload_img" />
 
@@ -30,6 +35,7 @@
 import Container from './components/container.vue'
 import UserData from './assets/data/userdata.js'
 import axios from 'axios'
+import { mapMutations, mapState } from 'vuex'
 
 
 export default {
@@ -42,7 +48,8 @@ export default {
 			upload_img: '',
 			inputWriteContent: '',
 			choose_filter: '',
-			post_id: 4
+			post_id: 4,
+			datecount: 0
 		}
 	},
 	mounted() {
@@ -86,8 +93,15 @@ export default {
 			this.UserData.unshift(addContent)
 			this.container_step = 0
 			this.post_id++
-		}
+		},
+		...mapMutations(['agePlusone','setMore'])
 	},
+	computed: {
+		getAge() {
+			return this.$store.state.age
+		},
+		...mapState(['age', 'more'])
+	}
 }
 </script>
 
